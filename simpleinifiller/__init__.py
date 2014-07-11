@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 from os.path import expanduser
 import ConfigParser
-import logging 
+import logging
 
-logger = logging.getLogger('Config')
+logger = logging.getLogger('SimpleIniFiller')
 
 def debug(string):
     logger.debug(string)
@@ -67,7 +67,7 @@ class SimpleIniFiller(object):
             self.config_parser.add_section(section)
         except ConfigParser.DuplicateSectionError, e:
             debug("Section %s is present" % section)
-            
+
         self.config_parser.set(section, parameter, raw_input('Enter %s: '% (parameter,))  or parameter_default_value)
         self.config_parser.write(cfgfile)
         cfgfile.close()
